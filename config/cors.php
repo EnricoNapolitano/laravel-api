@@ -19,7 +19,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['*'],
+    // allowing a specific server to proceed with an api call 
+    'allowed_origins' => [env('APP_FRONTEND_URL', 'http://localhost:5174')],
 
     'allowed_origins_patterns' => [],
 
