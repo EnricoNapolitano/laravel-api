@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class TechnologyController extends Controller
 {
@@ -72,7 +73,7 @@ class TechnologyController extends Controller
     public function update(Request $request, Technology $technology)
     {
         $request->validate([
-            'label' => 'required|string|unique:technologies|min:3|max:10',
+            'label' => ['required', 'string', Rule::unique('technologies')->ignore($technology->id), 'min:3', 'max:10'],
             'class_icon' => 'string|nullable',
         ], 
         [
