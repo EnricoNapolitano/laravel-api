@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
@@ -80,7 +81,9 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return view('admin.projects.show', compact('project'));
+        $created_at = Carbon::create($project->created_at)->format('d/m/Y');
+        $updated_at = Carbon::create($project->updated_at)->format('d/m/Y');
+        return view('admin.projects.show', compact('project', 'created_at', 'updated_at'));
     }
 
     /**

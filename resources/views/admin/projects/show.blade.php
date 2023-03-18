@@ -11,11 +11,11 @@
 
     <!-- type og project -->
     <div>
-        <span><i class="fa-solid {{ $project->type->class_icon }}"></i> {{ $project->type->label }} || {{$project->updated_at}}</span>
+        <span><i class="text-primary fa-solid {{ $project->type->class_icon }}"></i> <strong>{{ $project->type->label }}</strong> || <strong>Created at:</strong> {{ $created_at }} || <strong>Updated at:</strong> {{$updated_at}}</span>
     </div>
 
     <!-- used technologies -->
-    <div>
+    <div class="mb-5">
         <span>
             @forelse($project->technologies as $technology)
             <i class="bigger-symbol text-primary {{ $technology?->class_icon }} mt-3 me-2"></i>
