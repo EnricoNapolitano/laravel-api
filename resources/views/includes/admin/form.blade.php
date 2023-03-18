@@ -28,8 +28,8 @@
         <div class="col-4 mb-3">
             <h4><label for="type_id" class="form-label">Type</label></h4>
             <select class="form-select @error('type_id') is-invalid @enderror" name="type_id" id="type_id">
-                @foreach($types as $type)
                 <option value="0">Choose type of project</option>
+                @foreach($types as $type)
                 <option @if(old('type_id', $project->type_id) == $type->id) selected @endif value="{{$type->id}}">{{$type->label}}</option>
                 @endforeach
             </select>
