@@ -16,8 +16,8 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->title }}</td>
                     <td><i class="text-primary fa-solid {{ $project->type?->class_icon }}"></i> {{ $project->type?->label }}</td>
-                    <td class="text-center">{{ $project->created_at }}</td>
-                    <td class="text-center">{{ $project->updated_at }}</td>
+                    <td class="text-center">{{ $project->getDate('created_at') }}</td>
+                    <td class="text-center">{{ $project->getDate('updated_at') }}</td>
                     <td class="text-end">
                         <a href="{{ route('admin.projects.show', $project->id) }}" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-eye"></i></a>
                         <a href="{{ route('admin.projects.edit', $project->id) }}" class="btn btn-outline-primary btn-sm"><i class="fa-solid fa-pencil"></i></a>
