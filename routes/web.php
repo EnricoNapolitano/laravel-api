@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\HomeController as GuestHomeController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
+use App\Http\Controllers\Admin\TypeController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\TechnologyController;
 
@@ -33,6 +34,7 @@ Route::middleware('auth')->prefix('/admin')->name('admin.')->group(function (){
     Route::delete('/Projects/{project}', [ProjectController::class, 'destroy'])->('projects.destroy'); */
 
     // Code below groups all the CRUD's routes
+    Route::resource('types', TypeController::class);
     Route::resource('technologies', TechnologyController::class);
     Route::resource('projects', ProjectController::class);
 });
