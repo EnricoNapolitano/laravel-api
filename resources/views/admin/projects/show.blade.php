@@ -18,7 +18,7 @@
     <div>
         <span>
             @forelse($project->technologies as $technology)
-            <i class="bigger-symbol text-primary {{ $technology->class_icon }} mt-3 me-2"></i>
+            <i class="bigger-symbol text-primary {{ $technology?->class_icon }} mt-3 me-2"></i>
             @empty
             -
             @endforelse
