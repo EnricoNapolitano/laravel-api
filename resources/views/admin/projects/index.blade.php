@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
+
         <table class="container table table-hover mt-5">
             <thead>
                 <th class="text-primary">#id</th>
@@ -15,7 +15,7 @@
                 <tr>
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->title }}</td>
-                    <td><i class="text-primary fa-solid {{ $project->type->class_icon }}"></i> {{ $project->type->label }}</td>
+                    <td><i class="text-primary fa-solid {{ $project->type?->class_icon }}"></i> {{ $project->type?->label }}</td>
                     <td class="text-center">{{ $project->created_at }}</td>
                     <td class="text-center">{{ $project->updated_at }}</td>
                     <td class="text-end">
@@ -31,7 +31,6 @@
             </tbody>
         </table>
         <a href="{{ route('admin.projects.create') }}" class="btn btn-outline-primary"><i class="fa-solid fa-upload me-2"></i>Upload Project</a>
-    </div>
 
 
 @endsection
