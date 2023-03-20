@@ -6,12 +6,15 @@ use Carbon\Carbon;
 use App\Models\Project;
 use App\Models\Type;
 use App\Models\Technology;
+use App\Mail\NewProjectMail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -40,6 +43,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $isUploaded = false; // flag controller
         $request->validate([
             'title' => 'required|string|unique:projects|min:5|max:50',
             'type_id' => 'nullable|exists:types,id',
@@ -69,6 +73,15 @@ class ProjectController extends Controller
         if ($request->hasFile('image')) $project->image = Storage::put('upload', $data['image']);
         
         $project->save();
+
+        $isUploaded = true;
+
+        if($isUploaded){
+            $email = new NewProjectMail();
+            $user_email = Auth::user()->email;
+            Mail::to($user_email)->send($email);
+        }
+
 
         // make a relation between project and technology
         if(Arr::exists($data, 'technologies')) $project->technologies()->attach($data['technologies']);
